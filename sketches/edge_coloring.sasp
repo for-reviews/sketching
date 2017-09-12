@@ -1,0 +1,24 @@
+[SKETCH]
+% if there are two colors for the same edge => not a model
+:- colored(X,Y,C1) & colored(X,Y,C2) & C1 ?= C2.
+% if adjacent edges have the same color => not a model
+:- colored(X1,Y1,C1) & colored(X2,Y2,C2) & X1 ?= X2 & Y1 ?= Y2 & C1 ?= C2. 
+
+% auxiliary predicates
+edge(Y,X) :- edge(X,Y).
+colored(Y,X,C) :- colored(X,Y,C).
+
+[EXAMPLES]
+positive: colored(1,2,b). colored(2,3,r). colored(3,4,b). colored(1,4,g). colored(2,5,g). colored(4,5,r).
+negative: colored(1,2,r). colored(2,3,r). colored(3,4,b). colored(1,4,g). colored(2,5,g). colored(4,5,r).
+
+
+[FACTS]
+color(r). color(g). color(b).
+edge(1,2). edge(2,3). edge(3,4). edge(4,1). edge(2,5). edge(4,5).
+
+[DOMAIN]
+?= : 1,2,3,4,5,r,g,b
+
+[PREFERENCES]
+?= : = -> max, != -> max.

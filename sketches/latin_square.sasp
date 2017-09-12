@@ -1,0 +1,18 @@
+[SKETCH]
+% something should happen to the values in the same rows
+ :- cell(X,Y1,N1) & cell(X,Y2,N2) & Y1 ?= Y2 & N1 ?= N2.
+% something should happen to the values in the same columns
+ :- cell(X1,Y,N1) & cell(X2,Y,N2) & X1 ?= X2 & N1 ?= N2.
+
+[EXAMPLES]
+positive: cell(1,1,a). cell(1,2,b). cell(1,3,c). cell(2,1,c). cell(2,2,a). cell(2,3,b). cell(3,1,b). cell(3,2,c). cell(3,3,a).
+negative: cell(1,1,b). cell(1,2,a). cell(1,3,c). cell(2,1,c). cell(2,2,a). cell(2,3,b). cell(3,1,b). cell(3,2,c). cell(3,3,a).
+negative: cell(1,1,c). cell(1,2,b). cell(1,3,c). cell(2,1,a). cell(2,2,a). cell(2,3,b). cell(3,1,b). cell(3,2,c). cell(3,3,a).
+
+[DOMAIN]
+?= : 1,2,3,a,b,c
+
+[FACTS]
+
+[PREFERENCES]
+?= : = -> max, != -> max.

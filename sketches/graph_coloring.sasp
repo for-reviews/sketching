@@ -1,0 +1,23 @@
+[SKETCH]
+:- ?p1(X,Y) & ?p2(X,Z) & ?p3(Y,H) & Z ?= H & X ?= Y & X ?= Z & Y ?= Z.
+edge(Y,X) :- edge(X,Y).
+
+[EXAMPLES]
+positive: color(a,blue). color(b,red). color(c,green).
+negative: color(a,blue). color(b,red). color(c,blue).
+negative: color(a,blue). color(b,blue). color(c,blue).
+
+[SKETCHEDVAR]
+?p1/2 : edge, color
+?p2/2 : edge, color
+?p3/2 : edge, color
+
+[DOMAIN]
+?= : blue, red, green, a, b, c
+
+[FACTS]
+edge(a,b). edge(b,c). edge(c,a).
+
+# It removes ~300 dominated solutions here
+[PREFERENCES]
+?= : = -> max, != -> max.

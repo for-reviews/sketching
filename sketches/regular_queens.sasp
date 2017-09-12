@@ -1,0 +1,19 @@
+% some constraints on rows, columns and diagonals
+[SKETCH]
+:- queen(R1,C1) & queen(R2,C2) & R1  = R2 & C1 ?= C2.
+:- queen(R1,C1) & queen(R2,C2) & R1 ?= R2 & C1  = C2.
+:- queen(R1,C1) & queen(R2,C2) & R1 ?= R2 & [ R1 ?+ R2 ] ?= [ C1 ?+ C2 ].
+
+[DOMAIN]
+?= : -20..20
+?+ : -20..20
+
+[EXAMPLES]
+positive : queen(1,8). queen(2,2). queen(3,5). queen(4,3). queen(5,1). queen(6,7). queen(7,4). queen(8,6).
+positive : queen(1,2). queen(2,5). queen(3,7). queen(4,1). queen(5,3). queen(6,8). queen(7,6). queen(8,4).
+negative : queen(1,1). queen(2,2). queen(3,3). queen(4,4).
+negative : queen(1,2). queen(2,1).
+
+
+[PREFERENCES]
+?= : = -> max, != -> max.

@@ -1,0 +1,37 @@
+
+[SKETCH]
+:- pre_assigned(I,F) & assigned(I,F1) & F ?= F1.
+:- interfering(I) & interfering(J) & I != J & distance_interfering(D) & assigned(I,F1) & assigned(J,F2) & [ F1 ?+ F2 ] ?= D.
+:- parallel_pairs(P,I,J) & distance_parallel(D) & assigned(I,F1) & assigned(J,F2) & [ F1 ?+ F2 ] ?= D.
+
+[EXAMPLES]
+positive: assigned(1,10). assigned(2,40). assigned(3,100). assigned(4,60). assigned(5,70). 
+% this fixes inequaltiies in the second rule
+negative: assigned(1,10). assigned(2,15). assigned(3,20).  assigned(4,60). assigned(5,70).  
+% this two set the first rule
+negative: assigned(1,5).  assigned(2,40). assigned(3,100). assigned(4,60). assigned(5,70). 
+positive: assigned(1,10). assigned(2,25). assigned(3,100). assigned(4,60). assigned(5,70).
+negative: assigned(1,15). assigned(2,40). assigned(3,100). assigned(4,60). assigned(5,70). 
+% this two fix inequaltiies in the || case
+negative: assigned(1,10). assigned(2,40). assigned(3,100). assigned(4,60). assigned(5,65). 
+negative: assigned(1,10). assigned(2,40). assigned(3,100). assigned(4,60). assigned(5,85). 
+
+[DOMAIN]
+?= : -100..100
+?+ : -100..100
+
+[PREFERENCES]
+?= : = -> max, != -> max.
+
+[FACTS]
+interfering(1). interfering(2). interfering(3).
+parallel_pairs(1,4,5). 
+frequency(10). frequency(15). frequency(20). frequency(25). frequency(30). frequency(35). frequency(40). frequency(45).  frequency(50).
+frequency(60). frequency(70). frequency(80). frequency(90). frequency(100). 
+pre_assigned(1,10).
+pre_assigned(4,60).
+distance_interfering(15).
+distance_parallel(10).
+
+
+

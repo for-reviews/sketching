@@ -1,0 +1,24 @@
+[SKETCH]
+:- ?p1(S1) & ?p2(S2) & element(S1,X) & element(S2,Y) & S1 ?= S2 & X ?= Y.
+
+[EXAMPLES]
+positive:  selected(w).
+positive:  selected(o). selected(e).
+negative:  selected(p). selected(e).
+
+[SKETCHEDVAR]
+?p1/1 : subsets, selected
+?p2/1 : subsets, selected
+
+[PREFERENCES]
+?= : = -> max, != -> max.
+
+[DOMAIN]
+?= : 1, 2, 3, 4, o, p, e, w
+
+[FACTS]
+subsets(o). subsets(p). subsets(e).
+element(o,1). element(o,3).
+element(p,2). element(p,3).
+element(e,2). element(e,4).
+element(w,1). element(w,2). element(w,3). element(w,4). 

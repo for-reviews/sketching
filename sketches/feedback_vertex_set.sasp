@@ -1,0 +1,15 @@
+[SKETCH]
+path(X,Y) :- edge(X,Y) & ?not deleted(X) & ?not deleted(Y).
+path(X,Y) :- edge(X,Z) & path(Z,Y) & ?not deleted(X) & ?not deleted(Y).
+:- ?not path(X,X).
+
+[EXAMPLES]
+positive: deleted(d).
+negative: deleted(b).
+
+[FACTS]
+edge(a,b). edge(a,c). edge(b,c). edge(c,d). edge(d,a). edge(b,d).
+
+[DOMAIN]
+not : a,b,c,d,e,f
+

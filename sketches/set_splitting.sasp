@@ -1,0 +1,29 @@
+[SKETCH]
+:- ?p1(I) & ?not ?p2(I).
+good_subset(I1) :- element(I1,X) & element(I2,Y) & split(X,G) & split(Y,H) & G ?= H & I1 ?= I2.
+%auxilary predicate to get subset index
+subset(I) :- element(I,X).
+
+[EXAMPLES]
+positive: split(1,0). split(2,1). split(4,1). split(6,1). split(3,0). split(5,0).
+negative: split(1,0). split(2,0). split(4,1). split(6,1). split(3,0). split(5,0).
+
+[SKETCHEDVAR]
+?p1/1 : subset, good_subset
+?p2/1 : subset, good_subset
+
+[FACTS]
+group(0). group(1).
+set(1). set(2). set(3). set(4). set(5). set(6).
+element(1,1). element(1,2). 
+element(2,3). element(2,4). element(2,5). 
+element(3,2). element(3,3). element(3,6). 
+element(4,1). element(4,4). element(4,6). 
+element(5,2). element(5,5). 
+
+[DOMAIN]
+?= : 0..10
+not : 0..10
+
+[PREFERENCES]
+?= : = -> max, != -> max.

@@ -1,0 +1,24 @@
+[SKETCH]
+% maybe negated edge is somehow related to vertices in the cliques, that are somehow connected between each other
+:- ?not edge(X,Y) & clique(I,Xi) & clique(I,Xj) & Xi ?= Xj & X ?= Xi & Y ?= Xj.
+
+%auxilary predicates
+vertex(X) :- edge(X,Y).
+edge(Y,X) :- edge(X,Y).
+
+[EXAMPLES]
+positive: clique(1,a). clique(2,d). clique(1,f). clique(1,e). clique(2,b). clique(2,c).
+negative: clique(1,a). clique(1,d). clique(1,f). clique(1,e). clique(2,b). clique(2,c).
+
+[FACTS]
+edge(a,b). edge(a,c). edge(a,e). edge(a,f).
+edge(b,c). edge(b,d).
+edge(c,d).
+edge(f,e).
+
+[DOMAIN]
+?= : 1,2,a,b,c,d,e,f
+not : a,b,c,d,e,f
+
+[PREFERENCES]
+?= : = -> max, != -> max, unbound -> max.

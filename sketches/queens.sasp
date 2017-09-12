@@ -1,0 +1,16 @@
+[SKETCH]
+:- queen(w,Rw,Cw) & queen(b,Rb,Cb) & Rw ?= Rb.
+:- queen(w,Rw,Cw) & queen(b,Rb,Cb) & Cw ?= Cb.
+:- queen(w,Rw,Cw) & queen(b,Rb,Cb) & [ Rw ?+ Rb ] ?= [ Cw ?+ Cb ].
+
+[DOMAIN]
+?= : -100..100
+?+ : -100..100
+
+[FACTS]
+
+[EXAMPLES]
+positive: queen(w,1,1). queen(w,2,2).  queen(b,3,4). queen(b,4,3). 
+positive: queen(b,1,1). queen(b,2,2).  queen(w,3,4). queen(w,4,3). 
+negative: queen(w,1,1). queen(w,2,2).  queen(b,3,4). queen(b,4,4).
+negative: queen(b,2,2). queen(w,3,1).

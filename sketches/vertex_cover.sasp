@@ -1,0 +1,22 @@
+[SKETCH]
+:- ?p1(X,Y) & ?not ?p2(X,Y).
+
+edge(X,Y) :- edge(Y,X).
+covered(X,Y) :- edge(X,Y) & vertex_cover(X).
+covered(Y,X) :- covered(X,Y).
+
+[EXAMPLES]
+positive: vertex_cover(b). vertex_cover(c). vertex_cover(d).  
+negative: vertex_cover(a). vertex_cover(b). 
+
+[SKETCHEDVAR]
+?p1/2 : edge, covered
+?p2/2 : edge, covered
+
+[DOMAIN]
+not : a,b,c,d
+
+[FACTS]
+edge(a,b). edge(a,c).
+edge(b,c). edge(b,d).
+edge(c,d).

@@ -1,0 +1,24 @@
+[SKETCH]
+covered(S) :- hitting_set(X) & subset(S,X).
+:- ?p1(X) & ?not ?p2(X).
+
+[EXAMPLES]
+positive: hitting_set(3). hitting_set(5).
+negative: hitting_set(1).
+
+[SKETCHEDVAR]
+?p1/1 : subsets, covered 
+?p2/1 : subsets, covered 
+
+[DOMAIN]
+not : 1,2,3,4,5,a,b,c,d,e
+
+[FACTS]
+set(1). set(2). set(3). set(4). set(5).
+subsets(a). subsets(b). subsets(c). subsets(d). subsets(e).
+subset(a,1). subset(a,2). subset(a,3).
+subset(b,2). subset(b,5).
+subset(c,3). subset(c,4).
+subset(d,1). subset(d,3).
+subset(e,5).
+

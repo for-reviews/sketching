@@ -1,0 +1,19 @@
+[SKETCH]
+path(X,Y) :- ?p1(X,Y) & ?not ?p2(X,Y).
+path(X,Y) :- ?p1(X,Z) & path(Z,Y) & ?not ?p2(X,Z).
+:- path(X,X).
+
+[SKETCHEDVAR]
+?p1/2: edge, deleted
+?p2/2: edge, deleted
+
+[EXAMPLES]
+positive: deleted(f,c).
+negative: deleted(b,d).
+
+[FACTS]
+edge(a,b). edge(b,d). edge(c,a). edge(c,d). edge(d,e). edge(e,f). edge(f,c).
+
+[DOMAIN]
+not : a,b,c,d,e,f
+

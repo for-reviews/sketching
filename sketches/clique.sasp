@@ -1,0 +1,28 @@
+# it basically says: if an edge somewhere between something doesn't exist,
+# then it is really-really bad
+[SKETCH]
+:- not edge(X,Y) & ?p(X) & ?q(Y) & X ?= Y.
+
+vertex(X) :- edge(X,_).
+vertex(X) :- edge(_,X).
+edge(X,Y) :- edge(Y,X).
+
+[SKETCHEDVAR]
+?p/1 : vertex, clique
+?q/1 : vertex, clique
+
+[DOMAIN]
+?= : a,b,c,d
+
+[FACTS]
+edge(a,b). edge(a,c).
+edge(b,c). edge(b,d).
+edge(c,d).
+
+[EXAMPLES]
+positive: clique(a). clique(b). clique(c).
+negative: clique(a). clique(d).
+
+# Optional here to remove solutions like a < b in place of a != b 
+[PREFERENCES]
+?= : = -> max, != -> max.

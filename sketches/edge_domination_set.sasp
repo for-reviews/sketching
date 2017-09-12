@@ -1,0 +1,22 @@
+[SKETCH]
+:- ?p1(X,Y) & ?not ?p2(X,Y).
+covered(X,Y) :- edge(X,Y) & domination_edge(Y,Z).
+
+% auxilary predicates
+edge(Y,X) :- edge(X,Y).
+domination_edge(Y,X) :- domination_edge(X,Y). 
+covered(Y,X) :- covered(X,Y).
+
+[EXAMPLES]
+positive: domination_edge(e,f). domination_edge(c,b).
+negative: domination_edge(a,b). domination_edge(a,f).
+
+[SKETCHEDVAR]
+?p1/2: covered, domination_edge, edge
+?p2/2: covered, domination_edge, edge
+
+[FACTS]
+edge(a,b). edge(b,c). edge(c,d). edge(d,e). edge(e,f). edge(f,a). edge(c,e).
+
+[DOMAIN]
+not : a,b,c,d,e,f

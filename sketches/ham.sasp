@@ -1,0 +1,19 @@
+[SKETCH]
+reached(Y) :- cycle(a, Y).
+reached(Y) :- cycle(X, Y) & reached(X).
+:- ?p(Y) & ?not ?q(Y).
+
+[EXAMPLES]
+positive: cycle(a,b). cycle(b,c). cycle(c,a).
+negative: cycle(a,b). cycle(b,a).
+
+[SKETCHEDVAR]
+?p/1 : node, reached
+?q/1 : node, reached
+
+[FACTS]
+node(a). node(b). node(c).
+
+[DOMAIN]
+not : a,b,c
+
